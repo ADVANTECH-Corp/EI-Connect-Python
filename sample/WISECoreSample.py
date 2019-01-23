@@ -110,7 +110,7 @@ def on_connect():
     print("Connected")
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    wise.core_device_register()
+    
     strActionReqTopic = "/wisepaas/%s/%s/agentactionreq" % (
         g_strTag,
         g_strClientID)  #Subscrib "/wisepaas/<custom>/<devId>/agentactionreq"
@@ -121,6 +121,8 @@ def on_connect():
         "device",
         g_strClientID)  #Subscrib "/wisepaas/<custom>/<devId>/agentactionreq"
     wise.core_subscribe(strActionReqTopic, 0)
+
+    wise.core_device_register()
 
     global g_lockHeartbeat
     global g_stopHeartbeatFlag
